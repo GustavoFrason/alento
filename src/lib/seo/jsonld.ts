@@ -1,40 +1,45 @@
+// src/lib/seo/jsonld.ts
 import type { Product } from "@/lib/types";
-import { getStore } from "@/lib/store";
+
+const BASE = "https://alentostore.com.br";
 
 export function buildWebPageJsonLd(products: Product[]) {
-  const { siteUrl, name } = getStore();
-  return {
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": products.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `${BASE}/#produto-${p.id}`
+    }))
+  };
+
+  const webPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${name} – Guirlandas de Natal`,
-    url: siteUrl,
-    description: "Guirlandas artesanais com materiais naturais. Compre pelo WhatsApp.",
-    publisher: { "@type": "Organization", name },
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Início", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "Guirlandas de Natal" }
-      ]
-    },
-    mainEntity: products.map(buildProductJsonLd),
-  } as const;
-}
+    "name": "ALENTO — Guirlandas de Natal Artesanais",
+    "url": `${BASE}/`,
+    "inLanguage": "pt-BR",
+    "about": "Guirlandas de Natal artesanais com toque sofisticado e natural."
+  };
 
-export function buildProductJsonLd(p: Product) {
-  const { siteUrl, name } = getStore();
-  return {
-    "@type": "Product",
-    name: p.name,
-    image: new URL(p.image, siteUrl).toString(),
-    brand: name,
-    sku: p.sku,
-    offers: {
-      "@type": "Offer",
-      price: p.price,
-      priceCurrency: "BRL",
-      availability: "https://schema.org/InStock",
-      url: siteUrl
-    }
-  } as const;
+  const organization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ALENTO",
+    "url": BASE,
+    "logo": `${BASE}/apple-touch-icon.png`,
+    "sameAs": ["https://www.instagram.com/alentostore"]
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": `${BASE}/` },
+      { "@type": "ListItem", "position": 2, "name": "Coleções", "item": `${BASE}/#colecoes` }
+    ]
+  };
+
+  return [webPage, organization, breadcrumb, itemList];
 }

@@ -1,16 +1,21 @@
+// src/lib/store.ts
 export function getStore() {
   return {
     name: "ALENTO",
-    slogan: "arte de celebrar com afeto",
-    phone: "+55 41 99999-9999",
-    whatsapp: (process.env.NEXT_PUBLIC_WA || "5541999999999").replace(/\D/g, ""),
-    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    instagram: "https://instagram.com/alento.store",
-  } as const;
+    slogan: "Guirlandas de Natal Artesanais",
+    phone: "5541999999999",
+    instagram: "https://www.instagram.com/alentostore", // <- adicionado
+  };
 }
 
-export function getWaLink(text?: string) {
-  const { whatsapp } = getStore();
-  const msg = encodeURIComponent(text ?? "Olá! Vim do site da Alento.");
-  return `https://wa.me/${whatsapp}?text=${msg}`;
+/**
+ * Gera link de WhatsApp com UTM. Mensagem é opcional (default segura).
+ */
+export function getWaLink(
+  message: string = "Olá! Vim pelo site ALENTO e quero comprar uma guirlanda."
+) {
+  const { phone } = getStore();
+  const text = encodeURIComponent(message);
+  const utm = "utm_source=site&utm_medium=cta&utm_campaign=alento_lp";
+  return `https://wa.me/${phone}?text=${text}&${utm}`;
 }

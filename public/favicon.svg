@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .bg { fill: #3f5a3a; }
+      .gold { fill: #c9a86a; }
+    </style>
+  </defs>
+  <circle class="bg" cx="256" cy="256" r="238" />
+  <!-- simple wreath ring using circles (approx) -->
+  <circle class="gold" cx="436.0" cy="256.0" r="14"/><circle class="gold" cx="431.5" cy="296.1" r="14"/><circle class="gold" cx="418.2" cy="334.1" r="14"/><circle class="gold" cx="396.7" cy="368.2" r="14"/><circle class="gold" cx="368.2" cy="396.7" r="14"/><circle class="gold" cx="334.1" cy="418.2" r="14"/><circle class="gold" cx="296.1" cy="431.5" r="14"/><circle class="gold" cx="256.0" cy="436.0" r="14"/><circle class="gold" cx="215.9" cy="431.5" r="14"/><circle class="gold" cx="177.9" cy="418.2" r="14"/><circle class="gold" cx="143.8" cy="396.7" r="14"/><circle class="gold" cx="115.3" cy="368.2" r="14"/><circle class="gold" cx="93.8" cy="334.1" r="14"/><circle class="gold" cx="80.5" cy="296.1" r="14"/><circle class="gold" cx="76.0" cy="256.0" r="14"/><circle class="gold" cx="80.5" cy="215.9" r="14"/><circle class="gold" cx="93.8" cy="177.9" r="14"/><circle class="gold" cx="115.3" cy="143.8" r="14"/><circle class="gold" cx="143.8" cy="115.3" r="14"/><circle class="gold" cx="177.9" cy="93.8" r="14"/><circle class="gold" cx="215.9" cy="80.5" r="14"/><circle class="gold" cx="256.0" cy="76.0" r="14"/><circle class="gold" cx="296.1" cy="80.5" r="14"/><circle class="gold" cx="334.1" cy="93.8" r="14"/><circle class="gold" cx="368.2" cy="115.3" r="14"/><circle class="gold" cx="396.7" cy="143.8" r="14"/><circle class="gold" cx="418.2" cy="177.9" r="14"/><circle class="gold" cx="431.5" cy="215.9" r="14"/>
+  <!-- bow -->
+  <ellipse class="gold" cx="206" cy="370" rx="44" ry="30"/>
+  <ellipse class="gold" cx="306" cy="370" rx="44" ry="30"/>
+  <circle class="bg" cx="256" cy="370" r="14"/>
+  <polygon class="gold" points="256,382 236,430 276,430"/>
+</svg>
