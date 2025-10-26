@@ -1,27 +1,114 @@
-@import "tailwindcss";
+/* ----------------------------------------------
+   🎨 FONTES
+---------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap");
 
-/* ===========================
-   Fundo BOKEH (sem imagem)
-   =========================== */
-html {
-  /* base quente parecida com o mock */
-  background-color: #E8D9C7;
+/* ----------------------------------------------
+   🧩 TAILWIND LAYERS
+---------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  /* círculos de luz (bokeh) usando apenas gradientes */
-  background-image:
-    radial-gradient(12rem 12rem at 12% 10%, rgba(255, 255, 255, .45), rgba(255, 255, 255, 0) 60%),
-    radial-gradient(14rem 14rem at 82% 24%, rgba(255, 255, 255, .32), rgba(255, 255, 255, 0) 62%),
-    radial-gradient(10rem 10rem at 18% 80%, rgba(255, 255, 255, .26), rgba(255, 255, 255, 0) 65%),
-    radial-gradient(16rem 16rem at 70% 82%, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0) 70%);
-  background-attachment: fixed; /* efeito de “vidro” por trás do painel */
+/* ----------------------------------------------
+   🪶 RESET E CONFIGURAÇÕES GERAIS
+---------------------------------------------- */
+@layer base {
+  * {
+    @apply box-border scroll-smooth;
+  }
+
+  html,
+  body {
+    font-family: "Inter", sans-serif;
+    @apply antialiased bg-[#F8F6F2] text-brown selection:bg-gold/30 selection:text-olive;
+  }
+
+  /* Dark mode automático (baseado no sistema) */
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply bg-olive text-cream;
+    }
+
+    a {
+      @apply text-gold;
+    }
+
+    ::selection {
+      @apply bg-gold text-olive;
+    }
+  }
+
+  html {
+    font-display: swap;
+  }
+
+  section {
+    scroll-margin-top: 6rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", serif;
+    @apply text-olive tracking-tight;
+  }
+
+  p {
+    @apply leading-relaxed text-gray;
+  }
+
+  a {
+    @apply transition-colors duration-200 hover:text-olive;
+  }
+
+  img {
+    @apply select-none;
+  }
 }
 
-/* UX extra */
-:root { color-scheme: light; }
-html, body { height: 100%; }
-html { scroll-behavior: smooth; }
+/* ----------------------------------------------
+   💅 COMPONENTES UTILITÁRIOS
+---------------------------------------------- */
+@layer components {
+  .container {
+    @apply mx-auto max-w-6xl px-4;
+  }
+}
 
-/* Utilitários de marca (opcional) */
-.btn-olive { @apply rounded-lg bg-[#3F5A3A] text-white px-5 py-3 text-sm font-semibold shadow hover:opacity-95; }
-.badge-gold { @apply inline-block rounded-md text-white text-sm px-2 py-1 font-semibold; background-color: #C9A648; }
-.card-soft  { @apply rounded-2xl bg-[#F7F5F0] ring-1 ring-black/10 shadow-sm; }
+/* ----------------------------------------------
+   🌙 ESTADOS E INTERAÇÕES
+---------------------------------------------- */
+@layer utilities {
+  button,
+  a {
+    @apply focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+
+  .fade-in {
+    @apply opacity-0 animate-fadeIn;
+  }
+
+  /* ❄️ Snowfall Animation */
+  .snowfall-animation {
+    animation: snowfallFall linear infinite;
+  }
+
+  @keyframes snowfallFall {
+    0% {
+      transform: translateY(-50px) translateX(0);
+      opacity: 0;
+    }
+    5% {
+      opacity: 0.5;
+    }
+    95% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(calc(100vh + 50px)) translateX(40px);
+      opacity: 0;
+    }
+  }
+}

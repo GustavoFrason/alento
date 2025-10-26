@@ -12,7 +12,7 @@ export function FloatingWhatsApp() {
       rel="noopener noreferrer"
       aria-label="Fale conosco no WhatsApp"
       onClick={() => trackWhatsAppClick("floating")}
-      className="fixed bottom-4 right-4 z-50 rounded-full bg-[#3F5A3A] text-white px-4 py-3 shadow-lg hover:opacity-90"
+      className="fixed right-4 bottom-4 z-50 rounded-full bg-[#3F5A3A] px-4 py-3 text-white shadow-lg hover:opacity-90"
     >
       💬 Fale conosco
     </a>

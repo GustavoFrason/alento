@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "ALENTO",
     short_name: "ALENTO",
-    description: "Guirlandas de Natal artesanais — luxo + aconchego. Compre pelo WhatsApp.",
+    description:
+      "Guirlandas de Natal artesanais — luxo + aconchego. Compre pelo WhatsApp.",
     start_url: "/",
     scope: "/",
     display: "standalone",

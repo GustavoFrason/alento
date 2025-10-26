@@ -1,41 +1,90 @@
+"use client";
+
 import { getStore, getWaLink } from "@/lib/store";
+import { motion } from "framer-motion";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export function Footer() {
   const STORE = getStore();
-  const waLink = getWaLink();
+  const waLink = getWaLink(
+    "Olá! Gostaria de saber mais sobre as guirlandas da Alento 🌿"
+  );
 
   return (
-    <footer id="contato" className="bg-emerald-900 text-emerald-50">
-      <div className="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-4 gap-8">
-        <div>
-          <p className="font-serif text-xl">{STORE.name}</p>
-          <p className="mt-1 text-emerald-100/90">{STORE.slogan}</p>
+    <footer
+      id="contato"
+      className="border-t border-[#D4AF37]/30 bg-[#3F5A3A] py-12 text-white"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Sessão principal */}
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
+          {/* Identidade da marca */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center md:text-left"
+          >
+            <h2 className="font-playfair mb-2 text-2xl text-[#D4AF37] md:text-3xl">
+              {STORE.name}
+            </h2>
+            <p className="max-w-sm text-sm text-gray-200 md:text-base">{STORE.slogan}</p>
+          </motion.div>
+
+          {/* Contato e redes */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-col items-center gap-3 md:items-end"
+          >
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-[#D4AF37] px-5 py-2 font-semibold text-[#3F5A3A] shadow-md transition-all hover:bg-[#c19b2e]"
+            >
+              <FaWhatsapp className="text-lg" />
+              Fale pelo WhatsApp
+            </a>
+
+            <a
+              href={STORE.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 transition-all hover:text-[#D4AF37]"
+            >
+              <FaInstagram className="text-lg" />
+              <span>@alentodecor</span>
+            </a>
+          </motion.div>
         </div>
-        <div>
-          <p className="font-semibold">Contato</p>
-          <ul className="mt-2 space-y-1 text-sm">
-            <li><a href={waLink} className="underline underline-offset-4">WhatsApp</a></li>
-            <li><a href={`tel:${STORE.phone}`} className="underline underline-offset-4">{STORE.phone}</a></li>
-          </ul>
-        </div>
-        <div>
-          <p className="font-semibold">Atendimento</p>
-          <p className="mt-2 text-sm">Seg–Sex, 9h às 18h<br />Envios para todo o Brasil</p>
-        </div>
-        <div>
-          <p className="font-semibold">Links</p>
-          <ul className="mt-2 space-y-1 text-sm">
-            <li><a href="#colecoes" className="hover:underline">Coleções</a></li>
-            <li><a href="#personalizada" className="hover:underline">Personalizadas</a></li>
-            <li><a href="#faq" className="hover:underline">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-emerald-800/70">
-        <div className="mx-auto max-w-6xl px-4 py-4 text-xs flex items-center justify-between">
-          <p>© {new Date().getFullYear()} {STORE.name}. Todos os direitos reservados.</p>
-          <p className="text-emerald-100/70">Feito com carinho em Curitiba/PR</p>
-        </div>
+
+        {/* Linha divisória */}
+        <div className="mt-10 mb-6 border-t border-[#D4AF37]/20" />
+
+        {/* Rodapé inferior */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center text-sm text-gray-300"
+        >
+          <p>
+            © {new Date().getFullYear()} {STORE.name}. Todos os direitos reservados.
+          </p>
+          <p className="mt-1 text-gray-400">
+            Feito com ❤️ por{" "}
+            <a
+              href="https://github.com/GustavoFrason"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-[#D4AF37]"
+            >
+              Gustavo Frason
+            </a>
+          </p>
+        </motion.div>
       </div>
     </footer>
   );

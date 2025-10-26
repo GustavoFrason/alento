@@ -1,29 +1,30 @@
-import Image from "next/image";
+"use client";
+
 import { getWaLink } from "@/lib/store";
 
 export function CustomCTA() {
-  const wa = getWaLink();
+  const wa = getWaLink("Gostaria de personalizar minha guirlanda 🎄");
+
   return (
-    <section id="personalizada" className="mx-auto max-w-6xl px-4 py-14">
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 className="font-serif text-3xl">Monte a sua Guirlanda Personalizada</h2>
-          <p className="mt-2 text-zinc-600">Quer algo único? Criamos sob medida para combinar com a sua porta, paleta de cores e estilo.</p>
-          <ul className="mt-4 space-y-2 text-sm text-zinc-700 list-disc pl-5">
-            <li>Diâmetros de 35 a 60 cm</li>
-            <li>Laços em tecidos nobres (veludo, linho, cetim)</li>
-            <li>Mensagem personalizada gravada no aplique</li>
-          </ul>
-          <div className="mt-6">
-            <a href={wa} className="rounded-lg bg-emerald-800 text-white px-5 py-3 text-sm font-semibold shadow hover:bg-emerald-700">
-              Falar com um especialista
-            </a>
-          </div>
-        </div>
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-zinc-200">
-          <Image src="/images/personalizada.jpg" alt="Detalhe artesanal de laço em guirlanda personalizada" fill className="object-cover" />
-        </div>
-      </div>
+    <section
+      id="personalizada"
+      className="mx-auto max-w-6xl rounded-2xl bg-gradient-to-r from-green-800 to-green-600 px-4 py-20 text-center text-white shadow-md"
+    >
+      <h2 className="mb-6 text-2xl font-semibold md:text-3xl">
+        Personalize a sua guirlanda
+      </h2>
+      <p className="mx-auto mb-8 max-w-2xl text-base opacity-90 md:text-lg">
+        Escolha cores, tamanhos e detalhes que combinam com o seu lar. Faça sua encomenda
+        e receba um toque de encanto neste Natal.
+      </p>
+      <a
+        href={wa}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block rounded-lg bg-white px-6 py-3 font-semibold text-green-800 transition hover:bg-gray-100"
+      >
+        Falar com a Alento 🌿
+      </a>
     </section>
   );
 }

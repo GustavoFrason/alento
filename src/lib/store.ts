@@ -1,21 +1,27 @@
-// src/lib/store.ts
-export function getStore() {
+import type { StoreInfo } from "@/lib/types";
+
+/**
+ * Retorna as informações principais da loja Alento.
+ * Usado em Footer, SEO e contato via WhatsApp.
+ */
+export function getStore(): StoreInfo {
   return {
-    name: "ALENTO",
-    slogan: "Guirlandas de Natal Artesanais",
-    phone: "5541999999999",
-    instagram: "https://www.instagram.com/alentostore", // <- adicionado
+    name: "Alento",
+    slogan: "Guirlandas que acolhem o espírito do Natal",
+    whatsapp: "5541999999999",
+    instagram: "https://instagram.com/alentodecor",
+    address: "Curitiba – PR",
+    email: "contato@alento.com.br",
   };
 }
 
 /**
- * Gera link de WhatsApp com UTM. Mensagem é opcional (default segura).
+ * Gera um link de WhatsApp com mensagem personalizada.
+ * Se nenhuma mensagem for informada, usa um texto padrão.
  */
 export function getWaLink(
-  message: string = "Olá! Vim pelo site ALENTO e quero comprar uma guirlanda."
-) {
-  const { phone } = getStore();
-  const text = encodeURIComponent(message);
-  const utm = "utm_source=site&utm_medium=cta&utm_campaign=alento_lp";
-  return `https://wa.me/${phone}?text=${text}&${utm}`;
+  message: string = "Olá! Gostaria de saber mais sobre as guirlandas da Alento 🌿"
+): string {
+  const store = getStore();
+  return `https://wa.me/${store.whatsapp}?text=${encodeURIComponent(message)}`;
 }

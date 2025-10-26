@@ -7,7 +7,7 @@ export function BottomCTA() {
       <div className="mx-auto max-w-6xl px-4 py-6 text-center">
         <a
           href={wa}
-          className="inline-flex items-center rounded-lg bg-[#C9A648] text-white px-6 py-3 text-sm font-semibold shadow hover:opacity-90"
+          className="inline-flex items-center rounded-lg bg-[#C9A648] px-6 py-3 text-sm font-semibold text-white shadow hover:opacity-90"
         >
           MONTE A SUA GUIRLANDA PERSONALIZADA
         </a>

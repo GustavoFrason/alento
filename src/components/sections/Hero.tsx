@@ -1,47 +1,36 @@
 "use client";
 import Image from "next/image";
-import { getStore, getWaLink } from "@/lib/store";
 import { Reveal } from "@/components/common/Reveal";
+import { Button } from "@/components/common/Button";
 
 export function Hero() {
-  const { slogan } = getStore();
-  const wa = getWaLink("Quero ver modelos de guirlanda");
-
   return (
-    <section id="top" className="relative isolate">
+    <section id="hero" className="relative isolate overflow-hidden pt-14 sm:pt-16 md:pt-20">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/hero-guirlanda.jpg"
-          alt="Guirlanda de Natal pendurada em porta com luzes desfocadas"
+          src="/images/hero-guirlanda.png"
+          alt="Guirlanda de Natal decorando uma porta com luzes ao fundo"
           fill
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 py-14 md:py-28 text-white">
-        <Reveal y={32}>
-          <div className="max-w-xl bg-white/80 backdrop-blur rounded-xl p-6 md:p-8 shadow-lg ring-1 ring-white/40 text-[#2a2a2a]">
-            <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-[#3F5A3A]">{slogan}</p>
-            <h1 className="mt-2 font-serif text-3xl md:text-5xl leading-tight text-[#3F5A3A]">
-              ALENTO: A Magia do Natal
-            </h1>
-            <p className="mt-3 text-sm md:text-base text-zinc-700">
-              Guirlandas artesanais para celebrar com afeto. Materiais naturais, design atemporal e
-              acabamento premium.
-            </p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
-              <a href="#colecoes" className="btn-olive">Ver Guirlandas</a>
-              <a
-                href={wa}
-                className="rounded-lg border border-[#3F5A3A]/50 text-[#3F5A3A] px-5 py-3 text-sm font-semibold hover:bg-[#3F5A3A]/5"
-              >
-                Monte a sua
-              </a>
+      <div className="container py-12 sm:py-16 md:py-24 lg:py-28 flex justify-start">
+        <div className="max-w-2xl">
+          <Reveal>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl">
+              <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white">
+                Decore com amor e tradição
+              </h1>
+              <p className="text-base sm:text-lg text-white mb-6 sm:mb-8 leading-relaxed">
+                Guirlandas artesanais que trazem encanto, aconchego e significado para o seu lar.
+              </p>
+              <Button href="#products">Ver modelos</Button>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

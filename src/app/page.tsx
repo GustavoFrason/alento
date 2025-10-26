@@ -1,64 +1,72 @@
-// src/app/page.tsx
-import { Header } from "@/components/common/Header";
-import { Footer } from "@/components/common/Footer";
-import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
-import { FeaturesBar } from "@/components/sections/FeaturesBar";
-import ProductGrid from "@/components/product/ProductGrid";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { CustomCTA } from "@/components/sections/CustomCTA";
+import { Products } from "@/components/sections/Products";
+import { About } from "@/components/sections/About";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { FAQ } from "@/components/sections/FAQ";
-import { InstagramBar } from "@/components/sections/InstagramBar";
-import { BottomCTA } from "@/components/sections/BottomCTA";
-import { products } from "@/lib/data/products";
-import { buildWebPageJsonLd } from "@/lib/seo/jsonld";
+import { Footer } from "@/components/sections/Footer";
 
-export const revalidate = 3600; // 1h – LP estática com refresh periódico
+// 🧠 SEO otimizado
+export const metadata: Metadata = {
+  title: "Alento | Guirlandas Artesanais de Natal",
+  description:
+    "Guirlandas artesanais que encantam. Feitas à mão com materiais nobres, cada peça Alento traz aconchego, tradição e beleza para sua casa neste Natal.",
+  openGraph: {
+    title: "Alento | Guirlandas Artesanais de Natal",
+    description:
+      "Decore seu lar com amor e tradição. Conheça nossas guirlandas exclusivas Alento.",
+    url: "https://alento-lime.vercel.app",
+    siteName: "Alento",
+    images: [
+      {
+        url: "https://alento-lime.vercel.app/images/hero-guirlanda.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Guirlanda de Natal decorando uma porta com luzes ao fundo",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+};
+
 export default function Page() {
-  const jsonLd = buildWebPageJsonLd(products);
+  // 🔖 JSON-LD estruturado para SEO (Google)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    name: "Alento",
+    image: "https://alento-lime.vercel.app/images/hero-guirlanda.jpg",
+    url: "https://alento-lime.vercel.app",
+    telephone: "+55 11 99999-9999",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Curitiba",
+      addressRegion: "PR",
+      addressCountry: "BR",
+    },
+    description:
+      "Guirlandas de Natal artesanais feitas à mão. Tradição, aconchego e beleza em cada detalhe.",
+  };
 
   return (
     <>
-      <a
-        href="#conteudo"
-        className="sr-only focus:not-sr-only fixed top-2 left-2 z-[9999] rounded bg-white px-3 py-2 text-sm text-black shadow"
-      >
-        Pular para o conteúdo
-      </a>
+      {/* SEO avançado */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      <Header />
-
-      <main id="conteudo">
+      {/* Seções do site */}
+      <main>
         <Hero />
-        <FeaturesBar />
-        <section
-          id="colecoes"
-          className="container mx-auto px-4 md:px-6 lg:px-8 py-8 lg:py-12"
-          aria-label="Coleções Especiais de Natal"
-        >
-          <h2 className="font-playfair text-3xl md:text-4xl text-[#3F5A3A] text-center">
-            Coleções Especiais de Natal
-          </h2>
-          <p className="mt-2 text-center text-neutral-700">
-            Prontas para enviar. <strong>Personalizamos</strong> o laço e a mensagem.
-          </p>
-          <div className="mt-6">
-            <ProductGrid />
-          </div>
-        </section>
         <HowItWorks />
-        <CustomCTA />
+        <Products />
+        <About />
         <Testimonials />
-        <FAQ />
-        <InstagramBar />
-        <BottomCTA />
       </main>
 
       <Footer />
-      <FloatingWhatsApp />
     </>
   );
 }

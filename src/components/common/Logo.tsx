@@ -2,7 +2,13 @@
 
 import React from "react";
 
-export default function Logo({ height = 48, className = "" }: { height?: number; className?: string }) {
+export default function Logo({
+  height = 48,
+  className = "",
+}: {
+  height?: number;
+  className?: string;
+}) {
   return (
     <svg
       viewBox="0 0 400 100"
