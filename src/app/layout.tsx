@@ -5,16 +5,28 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alento-lime.vercel.app"),
-  title: "Alento - Guirlandas de Natal artesanais",
+  title: "ALENTO - Guirlandas de Natal artesanais",
   description:
-    "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com Alento.",
+    "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com ALENTO.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "ALENTO",
+  },
   openGraph: {
     type: "website",
-    title: "Alento - Guirlandas de Natal artesanais",
+    title: "ALENTO - Guirlandas de Natal artesanais",
     description:
-      "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com Alento.",
+      "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com ALENTO.",
     images: ["/images/hero-guirlanda.jpg"],
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#3F5A3A",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -14,8 +14,8 @@ const steps = [
   },
   {
     icon: FaRibbon,
-    title: "Personalize laço e frase",
-    description: "Adicione seu toque pessoal com laços e mensagens especiais",
+    title: "Personalize sua guirlanda",
+    description: "Adicione seu toque pessoal na sua guirlanda",
     color: "text-gold",
     bgColor: "bg-gold/10",
   },

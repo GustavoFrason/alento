@@ -22,7 +22,7 @@ export function Hero() {
           <Reveal>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl">
               <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white">
-                Decore com amor e tradição
+                A arte de celebrar com afeto
               </h1>
               <p className="text-base sm:text-lg text-white mb-6 sm:mb-8 leading-relaxed">
                 Guirlandas artesanais que trazem encanto, aconchego e significado para o seu lar.

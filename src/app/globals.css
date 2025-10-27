@@ -16,6 +16,11 @@
 @layer base {
   * {
     @apply box-border scroll-smooth;
+    touch-action: manipulation;
+  }
+  
+  button, a {
+    -webkit-tap-highlight-color: transparent;
   }
 
   html,

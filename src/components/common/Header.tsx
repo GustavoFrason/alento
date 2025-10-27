@@ -37,7 +37,7 @@ export function Header() {
       <nav className="container flex items-center justify-between h-14 sm:h-16 md:h-20">
         {/* Logo */}
         <Link href="/" className="font-playfair text-xl sm:text-2xl md:text-3xl text-gold hover:text-gold/80 transition-colors">
-          Alento
+          ALENTO
         </Link>
 
         {/* Desktop Navigation */}
@@ -65,8 +65,9 @@ export function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-white hover:text-gold transition-colors p-2"
+          className="md:hidden text-white hover:text-gold transition-colors p-3 touch-manipulation"
           aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
         </button>
@@ -84,7 +85,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-white hover:text-gold transition-colors text-sm font-medium py-2"
+              className="text-white hover:text-gold transition-colors text-base font-medium py-3 px-2 touch-manipulation"
             >
               {link.label}
             </a>
@@ -94,7 +95,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors text-sm font-semibold"
+            className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 active:bg-green-800 text-white px-6 py-4 rounded-lg transition-colors text-base font-semibold touch-manipulation"
           >
             <FaWhatsapp />
             WhatsApp

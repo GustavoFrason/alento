@@ -8,21 +8,21 @@ import { Footer } from "@/components/sections/Footer";
 
 // 🧠 SEO otimizado
 export const metadata: Metadata = {
-  title: "Alento | Guirlandas Artesanais de Natal",
+  title: "ALENTO | Guirlandas Artesanais de Natal",
   description:
-    "Guirlandas artesanais que encantam. Feitas à mão com materiais nobres, cada peça Alento traz aconchego, tradição e beleza para sua casa neste Natal.",
+    "Guirlandas artesanais que encantam. Feitas à mão com materiais nobres, cada peça ALENTO traz aconchego, tradição e beleza para sua casa neste Natal.",
   openGraph: {
-    title: "Alento | Guirlandas Artesanais de Natal",
+    title: "ALENTO | Guirlandas Artesanais de Natal",
     description:
-      "Decore seu lar com amor e tradição. Conheça nossas guirlandas exclusivas Alento.",
+      "A arte de celebrar com afeto. Conheça nossas guirlandas exclusivas ALENTO.",
     url: "https://alento-lime.vercel.app",
-    siteName: "Alento",
+    siteName: "ALENTO",
     images: [
       {
         url: "https://alento-lime.vercel.app/images/hero-guirlanda.jpg",
         width: 1200,
         height: 630,
-        alt: "Guirlanda de Natal decorando uma porta com luzes ao fundo",
+        alt: "Guirlanda de Natal rando uma porta com luzes ao fundo",
       },
     ],
     locale: "pt_BR",
@@ -35,7 +35,7 @@ export default function Page() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Store",
-    name: "Alento",
+    name: "ALENTO",
     image: "https://alento-lime.vercel.app/images/hero-guirlanda.jpg",
     url: "https://alento-lime.vercel.app",
     telephone: "+55 11 99999-9999",

@@ -13,12 +13,12 @@ export function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <h3 className="font-playfair text-2xl text-gold mb-4">Alento</h3>
-            <p className="text-sm text-gray-200 leading-relaxed mb-4">
+            <h3 className="font-playfair text-2xl text-gold mb-4">ALENTO</h3>
+            <p className="text-sm text-white leading-relaxed mb-4">
               Guirlandas artesanais que trazem aconchego, tradição e beleza para
               o seu lar. Feitas à mão com amor e cuidado.
             </p>
-            <p className="text-xs text-gray-300">
+            <p className="text-xs text-white">
               Política de devolução de 7 dias • Envios para todo Brasil
             </p>
           </div>
@@ -26,7 +26,7 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="font-semibold text-gold mb-4 uppercase tracking-wide text-sm">Navegação</h4>
-            <ul className="space-y-2 text-sm text-gray-200">
+            <ul className="space-y-2 text-sm text-white">
               <li>
                 <a href="#hero" className="hover:text-gold transition-colors">
                   Início
@@ -58,7 +58,7 @@ export function Footer() {
                 href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-gray-200 hover:text-gold transition-colors group"
+                className="flex items-center gap-2 text-sm text-white hover:text-gold transition-colors group"
               >
                 <FaWhatsapp className="text-lg group-hover:scale-110 transition-transform" />
                 WhatsApp
@@ -67,7 +67,7 @@ export function Footer() {
                 href={`https://instagram.com/${instagramHandle.replace("@", "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-gray-200 hover:text-gold transition-colors group"
+                className="flex items-center gap-2 text-sm text-white hover:text-gold transition-colors group"
               >
                 <FaInstagram className="text-lg group-hover:scale-110 transition-transform" />
                 Instagram
@@ -78,8 +78,8 @@ export function Footer() {
 
         {/* Divider */}
         <div className="border-t border-gold/20 pt-6 text-center">
-          <p className="text-sm text-gray-300">
-            © {new Date().getFullYear()} Alento. Todos os direitos reservados.
+          <p className="text-sm text-white">
+            © {new Date().getFullYear()} ALENTO. Todos os direitos reservados.
           </p>
           <p className="text-sm text-gold mt-2 flex items-center justify-center gap-2">
             Feito com <FaHeart className="text-red-400" /> para seu lar

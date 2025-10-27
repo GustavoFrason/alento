@@ -121,21 +121,21 @@ export function ProductFilters({ products, onFilterChange, onSearch }: ProductFi
   const hasActiveFilters = selectedFilter !== "all" || selectedColor !== "all" || selectedStyle !== "all" || searchQuery;
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+    <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 p-6 md:p-8 mb-8">
       {/* Search Bar */}
-      <div className="relative mb-6">
-        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+      <div className="relative mb-8">
+        <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
         <input
           type="text"
           placeholder="Buscar guirlandas..."
           value={searchQuery}
           onChange={(e) => handleSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-olive focus:border-transparent"
+          className="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-olive focus:border-olive transition-all bg-white shadow-sm"
         />
         {searchQuery && (
           <button
             onClick={() => handleSearch("")}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
           >
             <FaTimes />
           </button>
@@ -176,13 +176,16 @@ export function ProductFilters({ products, onFilterChange, onSearch }: ProductFi
 
           {/* Color Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
               Cor
             </label>
             <select
               value={selectedColor}
-              onChange={(e) => setSelectedColor(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-olive focus:border-transparent"
+              onChange={(e) => {
+                setSelectedColor(e.target.value);
+                applyFilters();
+              }}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-olive focus:border-olive transition-all bg-white shadow-sm"
             >
               <option value="all">Todas as cores</option>
               {colors.map(color => (
@@ -195,13 +198,16 @@ export function ProductFilters({ products, onFilterChange, onSearch }: ProductFi
 
           {/* Style Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
               Estilo
             </label>
             <select
               value={selectedStyle}
-              onChange={(e) => setSelectedStyle(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-olive focus:border-transparent"
+              onChange={(e) => {
+                setSelectedStyle(e.target.value);
+                applyFilters();
+              }}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-olive focus:border-olive transition-all bg-white shadow-sm"
             >
               <option value="all">Todos os estilos</option>
               {styles.map(style => (
