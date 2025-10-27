@@ -4,7 +4,7 @@ import { Snowfall } from "@/components/common/Snowfall";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alento-lime.vercel.app"),
+  metadataBase: new URL("https://alentostore.com.br"),
   title: "ALENTO - Guirlandas de Natal artesanais",
   description:
     "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com ALENTO.",

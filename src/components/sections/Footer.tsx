@@ -3,7 +3,7 @@
 import { FaInstagram, FaWhatsapp, FaHeart } from "react-icons/fa";
 
 export function Footer() {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5541996384529";
   const instagramHandle = "@alento";
 
   return (

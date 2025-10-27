@@ -66,7 +66,7 @@ export function HowItWorks() {
 
         <Reveal delay={0.6}>
           <div className="text-center mt-12">
-            <Button href="https://wa.me/5511999999999" variant="primary">
+            <Button href="https://wa.me/5541996384529" variant="primary">
               Falar com um especialista
             </Button>
           </div>

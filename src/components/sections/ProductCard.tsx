@@ -51,7 +51,7 @@ export function ProductCard({
   return (
     <Reveal delay={delay}>
       <div 
-        className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative h-[480px] flex flex-col border border-gray-100"
+        className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 relative h-full flex flex-col border border-gray-100"
       >
         {/* Badges */}
         <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">

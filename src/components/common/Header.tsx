@@ -23,8 +23,8 @@ export function Header() {
     { href: "#depoimentos", label: "Depoimentos" },
   ];
 
-  const whatsappNumber = "5511999999999";
-  const whatsappMessage = "Olá! Gostaria de saber mais sobre as guirlandas da Alento 🌿";
+  const whatsappNumber = "5541996384529";
+  const whatsappMessage = "Olá! Gostaria de saber mais sobre as guirlandas da ALENTO";
 
   return (
     <header

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const SNOWFLAKE_CHARS = ["❄", "❅", "❆", "❇", "✦"];
+const SNOWFLAKE_CHARS = ["❄", "❅", "❆", "*"];
 
 interface SnowflakeProps {
   size: number;
@@ -15,13 +15,14 @@ interface SnowflakeProps {
 function Snowflake({ size, left, delay, duration, char }: SnowflakeProps) {
   return (
     <div
-      className="absolute top-0 pointer-events-none snowfall-animation"
+      className="absolute top-0 pointer-events-none snowfall-animation text-white"
       style={{
         left: `${left}%`,
         fontSize: `${size}px`,
         animationDelay: `${delay}s`,
         animationDuration: `${duration}s`,
-        color: 'rgba(80, 80, 80, 0.5)',
+        opacity: 0.7,
+        filter: 'drop-shadow(0 0 2px rgba(255, 255, 255, 0.3))',
       }}
     >
       {char}

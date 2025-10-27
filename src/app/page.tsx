@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     title: "ALENTO | Guirlandas Artesanais de Natal",
     description:
       "A arte de celebrar com afeto. Conheça nossas guirlandas exclusivas ALENTO.",
-    url: "https://alento-lime.vercel.app",
+    url: "https://alentostore.com.br",
     siteName: "ALENTO",
     images: [
       {
-        url: "https://alento-lime.vercel.app/images/hero-guirlanda.jpg",
+        url: "https://alentostore.com.br/images/hero-guirlanda.png",
         width: 1200,
         height: 630,
         alt: "Guirlanda de Natal rando uma porta com luzes ao fundo",
@@ -36,9 +36,9 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "Store",
     name: "ALENTO",
-    image: "https://alento-lime.vercel.app/images/hero-guirlanda.jpg",
-    url: "https://alento-lime.vercel.app",
-    telephone: "+55 11 99999-9999",
+    image: "https://alentostore.com.br/images/hero-guirlanda.png",
+    url: "https://alentostore.com.br",
+    telephone: "+55 41 99638-4529",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Curitiba",
