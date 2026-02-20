@@ -1,42 +1,30 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/sections/Hero";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { Products } from "@/components/sections/Products";
-import { About } from "@/components/sections/About";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { HeroHome } from "@/components/sections/HeroHome";
+import { Categories } from "@/components/sections/Categories";
+import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
+import { WhyImport } from "@/components/sections/WhyImport";
 import { Footer } from "@/components/sections/Footer";
 
-// 🧠 SEO otimizado
 export const metadata: Metadata = {
-  title: "ALENTO | Guirlandas Artesanais de Natal",
+  title: "ALENTO | Produtos Importados dos EUA",
   description:
-    "Guirlandas artesanais que encantam. Feitas à mão com materiais nobres, cada peça ALENTO traz aconchego, tradição e beleza para sua casa neste Natal.",
+    "Roupas, bolsas, acessórios e eletrônicos importados dos Estados Unidos. Produtos 100% originais com garantia de qualidade e envio para todo Brasil.",
   openGraph: {
-    title: "ALENTO | Guirlandas Artesanais de Natal",
+    title: "ALENTO | Produtos Importados dos EUA",
     description:
-      "A arte de celebrar com afeto. Conheça nossas guirlandas exclusivas ALENTO.",
+      "As melhores marcas americanas com preço justo e garantia de originalidade. Nike, Michael Kors, Ray-Ban, Apple e muito mais.",
     url: "https://alentostore.com.br",
     siteName: "ALENTO",
-    images: [
-      {
-        url: "https://alentostore.com.br/images/hero-guirlanda.png",
-        width: 1200,
-        height: 630,
-        alt: "Guirlanda de Natal rando uma porta com luzes ao fundo",
-      },
-    ],
     locale: "pt_BR",
     type: "website",
   },
 };
 
 export default function Page() {
-  // 🔖 JSON-LD estruturado para SEO (Google)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Store",
     name: "ALENTO",
-    image: "https://alentostore.com.br/images/hero-guirlanda.png",
     url: "https://alentostore.com.br",
     telephone: "+55 41 99638-4529",
     address: {
@@ -46,24 +34,21 @@ export default function Page() {
       addressCountry: "BR",
     },
     description:
-      "Guirlandas de Natal artesanais feitas à mão. Tradição, aconchego e beleza em cada detalhe.",
+      "Loja de produtos importados dos Estados Unidos. Roupas, bolsas, acessórios e eletrônicos 100% originais.",
   };
 
   return (
     <>
-      {/* SEO avançado */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Seções do site */}
       <main>
-        <Hero />
-        <HowItWorks />
-        <Products />
-        <About />
-        <Testimonials />
+        <HeroHome />
+        <Categories />
+        <FeaturedProducts />
+        <WhyImport />
       </main>
 
       <Footer />

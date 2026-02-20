@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
-import { Snowfall } from "@/components/common/Snowfall";
+import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alentostore.com.br"),
-  title: "ALENTO - Guirlandas de Natal artesanais",
+  title: "ALENTO - Produtos Importados dos EUA",
   description:
-    "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com ALENTO.",
+    "Roupas, bolsas, acessórios e eletrônicos importados dos Estados Unidos. 100% originais com garantia.",
+  icons: {
+    icon: "/favicon.svg",
+  },
+
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -15,10 +19,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "ALENTO - Guirlandas de Natal artesanais",
+    title: "ALENTO - Produtos Importados dos EUA",
     description:
-      "Guirlandas feitas à mão com amor e propósito. Transforme seu lar com ALENTO.",
-    images: ["/images/hero-guirlanda.jpg"],
+      "Roupas, bolsas, acessórios e eletrônicos importados dos Estados Unidos. 100% originais com garantia.",
   },
 };
 
@@ -26,16 +29,16 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#3F5A3A",
+  themeColor: "#0F172A",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className="font-inter bg-[#F8F6F2] text-gray-900 antialiased">
-        <Snowfall />
+      <body className="font-inter bg-cream text-charcoal antialiased">
         <Header />
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );

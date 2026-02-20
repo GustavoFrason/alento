@@ -7,7 +7,7 @@ import type { StoreInfo } from "@/lib/types";
 export function getStore(): StoreInfo {
   return {
     name: "Alento",
-    slogan: "Guirlandas que acolhem o espírito do Natal",
+    slogan: "Produtos importados dos EUA com qualidade e confiança",
     whatsapp: "5541996384529",
     instagram: "https://instagram.com/alentodecor",
     address: "Curitiba – PR",
@@ -20,7 +20,7 @@ export function getStore(): StoreInfo {
  * Se nenhuma mensagem for informada, usa um texto padrão.
  */
 export function getWaLink(
-  message: string = "Olá! Gostaria de saber mais sobre as guirlandas da Alento 🌿"
+  message: string = "Olá! Gostaria de saber mais sobre os produtos importados da Alento 🇺🇸"
 ): string {
   const store = getStore();
   return `https://wa.me/${store.whatsapp}?text=${encodeURIComponent(message)}`;

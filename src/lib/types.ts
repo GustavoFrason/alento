@@ -101,3 +101,42 @@ export interface StoreInfo {
   /** (opcional) E-mail de contato */
   email?: string;
 }
+
+/* ===================================================
+   🇺🇸 PRODUTOS IMPORTADOS
+   =================================================== */
+
+/**
+ * Categorias de produtos importados.
+ */
+export type ImportedProductCategory =
+  | "roupas"
+  | "bolsas"
+  | "acessorios"
+  | "eletronicos";
+
+/**
+ * Tags para produtos importados.
+ */
+export type ImportedProductTag =
+  | "promoção"
+  | "novidade"
+  | "mais-vendido"
+  | "limitado"
+  | "frete-grátis";
+
+/**
+ * Entidade de produto importado dos EUA.
+ */
+export interface ImportedProduct {
+  id: string;
+  title: string;
+  imageSrc: string;
+  price: number;
+  compareAtPrice?: number;
+  category: ImportedProductCategory;
+  brand?: string;
+  origin: string;
+  tags?: ImportedProductTag[];
+  description?: string;
+}

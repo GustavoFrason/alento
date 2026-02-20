@@ -1,7 +1,8 @@
 /* ----------------------------------------------
    🎨 FONTES
 ---------------------------------------------- */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap");
+/* Playfair Display e Inter mantidos para compatibilidade */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap");
 
 /* ----------------------------------------------
    🧩 TAILWIND LAYERS
@@ -18,30 +19,15 @@
     @apply box-border scroll-smooth;
     touch-action: manipulation;
   }
-  
+
   button, a {
     -webkit-tap-highlight-color: transparent;
   }
 
   html,
   body {
-    font-family: "Inter", sans-serif;
-    @apply antialiased bg-[#F8F6F2] text-brown selection:bg-gold/30 selection:text-olive;
-  }
-
-  /* Dark mode automático (baseado no sistema) */
-  @media (prefers-color-scheme: dark) {
-    body {
-      @apply bg-olive text-cream;
-    }
-
-    a {
-      @apply text-gold;
-    }
-
-    ::selection {
-      @apply bg-gold text-olive;
-    }
+    font-family: "Outfit", sans-serif; /* Fonte moderna para corpo */
+    @apply antialiased bg-cream text-charcoal selection:bg-accent/30 selection:text-navy;
   }
 
   html {
@@ -49,23 +35,25 @@
   }
 
   section {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 5rem;
   }
 
   h1,
   h2,
   h3,
-  h4 {
-    font-family: "Playfair Display", serif;
-    @apply text-olive tracking-tight;
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", serif; /* Fonte premium para títulos */
+    @apply text-navy tracking-tight font-semibold;
   }
 
   p {
-    @apply leading-relaxed text-gray;
+    @apply leading-relaxed text-slate;
   }
 
   a {
-    @apply transition-colors duration-200 hover:text-olive;
+    @apply transition-colors duration-200;
   }
 
   img {
@@ -78,7 +66,7 @@
 ---------------------------------------------- */
 @layer components {
   .container {
-    @apply mx-auto max-w-6xl px-4;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 }
 
@@ -86,34 +74,30 @@
    🌙 ESTADOS E INTERAÇÕES
 ---------------------------------------------- */
 @layer utilities {
-  button,
-  a {
-    @apply focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
-  }
-
   .fade-in {
     @apply opacity-0 animate-fadeIn;
   }
+}
 
-  /* ❄️ Snowfall Animation */
-  .snowfall-animation {
-    animation: snowfallFall linear infinite;
+/* ----------------------------------------------
+   🌗 DARK MODE (sistema)
+---------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #0F172A;
+    color: #e2e8f0;
   }
 
-  @keyframes snowfallFall {
-    0% {
-      transform: translateY(-50px) translateX(0);
-      opacity: 0;
-    }
-    5% {
-      opacity: 0.5;
-    }
-    95% {
-      opacity: 0.5;
-    }
-    100% {
-      transform: translateY(calc(100vh + 50px)) translateX(40px);
-      opacity: 0;
-    }
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+  }
+
+  p {
+    color: #cbd5e1;
+  }
+
+  ::selection {
+    background-color: rgba(200, 169, 81, 0.4);
+    color: #ffffff;
   }
 }
