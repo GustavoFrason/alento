@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { HeroHome } from "@/components/sections/HeroHome";
-import { Categories } from "@/components/sections/Categories";
+import { CategoriesBento } from "@/components/sections/CategoriesBento";
+import { CategoriesMinimalist } from "@/components/sections/CategoriesMinimalist";
+// import { CategoriesSlider } from "@/components/sections/CategoriesSlider";
 import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { WhyImport } from "@/components/sections/WhyImport";
+import { FAQ } from "@/components/sections/FAQ";
+import { Newsletter } from "@/components/sections/Newsletter";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
@@ -46,9 +50,17 @@ export default function Page() {
 
       <main>
         <HeroHome />
-        <Categories />
+        
+        {/* Layout escolhido: Bento Grid */}
+        <CategoriesBento />
+
+        {/* Opção B (Minimalista) arquivada para uso futuro se necessário */}
+        {/* <CategoriesMinimalist /> */}
+        
         <FeaturedProducts />
         <WhyImport />
+        <FAQ />
+        <Newsletter />
       </main>
 
       <Footer />

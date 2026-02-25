@@ -2,14 +2,29 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
+import { FaWhatsapp, FaBars, FaTimes, FaSearch } from "react-icons/fa";
 import { useScroll } from "@/hooks/useScroll";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { SearchOverlay } from "./SearchOverlay";
+import { useEffect } from "react";
 
 export function Header() {
   const scrolled = useScroll(10);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Keyboard shortcut for search (CMD/CTRL + K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Consider moving these constants to a config file eventually
   const whatsappNumber = "5541996384529";
@@ -45,6 +60,15 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-6">
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="text-white hover:text-accent transition-colors p-2 relative group"
+            title="S Pesquisar (Cmd+K)"
+          >
+            <FaSearch className="text-lg" />
+            <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+          </button>
+
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -66,16 +90,29 @@ export function Header() {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden text-white hover:text-accent transition-colors p-3 touch-manipulation"
-          aria-label="Toggle menu"
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="text-white hover:text-accent transition-colors p-3 touch-manipulation"
+            aria-label="Pesquisar"
+          >
+            <FaSearch className="text-xl" />
+          </button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-white hover:text-accent transition-colors p-3 touch-manipulation"
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+          </button>
+        </div>
       </Container>
+
+      {/* Search Overlay */}
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Mobile Menu */}
       <div

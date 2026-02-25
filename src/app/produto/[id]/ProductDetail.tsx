@@ -12,20 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { getWhatsAppLink } from "@/utils/whatsapp";
 import { calculateDiscountPercentage } from "@/utils/discount";
 import { ImportedProductCard } from "@/components/product/ImportedProductCard";
-
-const categoryLabels: Record<string, string> = {
-  roupas: "Roupas",
-  bolsas: "Bolsas",
-  acessorios: "Acessórios",
-  eletronicos: "Eletrônicos",
-};
-
-const categoryEmoji: Record<string, string> = {
-  roupas: "👔",
-  bolsas: "👜",
-  acessorios: "⌚",
-  eletronicos: "🎧",
-};
+import { ProductGallery } from "@/components/product/ProductGallery";
 
 interface ProductDetailProps {
   product: ImportedProduct;
@@ -54,31 +41,14 @@ export function ProductDetail({ product, related }: ProductDetailProps) {
 
           {/* Product Detail Grid */}
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 mb-16">
-            {/* Image */}
+            {/* Gallery */}
             <Reveal>
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 aspect-square">
-                {/* Badges */}
-                <div className="absolute top-4 left-4 z-10">
-                  <Badge variant="navy">{categoryLabels[product.category]}</Badge>
-                </div>
-                {discountPercentage > 0 && (
-                  <div className="absolute top-4 right-4 z-10">
-                    <Badge variant="red">-{discountPercentage}% OFF</Badge>
-                  </div>
-                )}
-
-                {/* Placeholder visual */}
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate/5 to-navy/10">
-                  <div className="text-center">
-                    <span className="text-8xl">{categoryEmoji[product.category]}</span>
-                    <p className="text-lg text-gray-400 mt-4 font-medium">{product.brand}</p>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-4 left-4 z-10">
-                  <Badge variant="white" className="px-4 py-2">🇺🇸 Importado dos EUA</Badge>
-                </div>
-              </div>
+              <ProductGallery 
+                images={product.images || [product.imageSrc]} 
+                category={product.category}
+                brand={product.brand}
+                discountPercentage={discountPercentage}
+              />
             </Reveal>
 
             {/* Info */}

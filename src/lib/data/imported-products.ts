@@ -13,6 +13,11 @@ export const IMPORTED_PRODUCTS: ImportedProduct[] = [
     origin: "EUA",
     tags: ["promoção", "mais-vendido"],
     description: "Jaqueta corta-vento original Nike, direto dos Estados Unidos.",
+    images: [
+      "/products/imported/jaqueta-nike.jpg",
+      "/products/imported/jaqueta-nike-alt1.jpg",
+      "/products/imported/jaqueta-nike-alt2.jpg",
+    ],
   },
   {
     id: "IMP-02",
@@ -50,6 +55,11 @@ export const IMPORTED_PRODUCTS: ImportedProduct[] = [
     origin: "EUA",
     tags: ["promoção", "mais-vendido"],
     description: "Bolsa original Michael Kors em couro saffiano.",
+    images: [
+      "/products/imported/bolsa-mk.jpg",
+      "/products/imported/bolsa-mk-alt1.jpg",
+      "/products/imported/bolsa-mk-alt2.jpg",
+    ],
   },
   {
     id: "IMP-05",

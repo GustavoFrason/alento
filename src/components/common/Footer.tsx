@@ -55,7 +55,7 @@ export function Footer() {
               className="flex items-center gap-2 transition-all hover:text-[#D4AF37]"
             >
               <FaInstagram className="text-lg" />
-              <span>@alentodecor</span>
+              <span>@alentostore</span>
             </a>
           </motion.div>
         </div>
@@ -74,15 +74,7 @@ export function Footer() {
             © {new Date().getFullYear()} {STORE.name}. Todos os direitos reservados.
           </p>
           <p className="mt-1 text-gray-400">
-            Feito com ❤️ por{" "}
-            <a
-              href="https://github.com/GustavoFrason"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-[#D4AF37]"
-            >
-              Gustavo Frason
-            </a>
+            Feito com ❤️ por Gustavo Frason
           </p>
         </motion.div>
       </div>

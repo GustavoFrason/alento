@@ -79,7 +79,7 @@ export function Footer() {
             © {currentYear} ALENTO. Todos os direitos reservados.
           </p>
           <p className="text-gray-500 text-xs flex items-center gap-1">
-            Feito com <FaHeart className="text-red-500" /> por Gustavo Alves
+            Feito com <FaHeart className="text-red-500" /> por Gustavo Frason
           </p>
         </div>
       </Container>

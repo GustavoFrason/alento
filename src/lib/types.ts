@@ -139,4 +139,6 @@ export interface ImportedProduct {
   origin: string;
   tags?: ImportedProductTag[];
   description?: string;
+  /** Galeria de imagens (opcional) */
+  images?: string[];
 }
