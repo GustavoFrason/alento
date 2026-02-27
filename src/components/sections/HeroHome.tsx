@@ -143,20 +143,24 @@ export function HeroHome() {
       {/* RODAPÉ DO HERO (STATS) */}
       <div className="bg-white/50 dark:bg-white/5 backdrop-blur-md border-t border-brand-forest/5 dark:border-white/10 py-8 transition-colors duration-500">
         <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
             <div className="text-center md:text-left">
               <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">100% Original</span>
               <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Autenticidade Garantida</span>
             </div>
             <div className="text-center md:text-left border-l border-brand-forest/10 dark:border-white/10 pl-8">
+              <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Produtos Novos</span>
+              <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Novidades Semanais</span>
+            </div>
+            <div className="text-center md:text-left border-l border-brand-forest/10 dark:border-white/10 pl-8">
               <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Seminovos</span>
               <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Curadoria de Luxo</span>
             </div>
-            <div className="hidden md:block border-l border-brand-forest/10 dark:border-white/10 pl-8">
+            <div className="hidden lg:block border-l border-brand-forest/10 dark:border-white/10 pl-8">
               <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Fast Delivery</span>
               <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Direto de Orlando/EUA</span>
             </div>
-            <div className="hidden md:block border-l border-brand-forest/10 dark:border-white/10 pl-8">
+            <div className="hidden lg:block border-l border-brand-forest/10 dark:border-white/10 pl-8">
               <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Personal Shopper</span>
               <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Assessoria Exclusiva</span>
             </div>
