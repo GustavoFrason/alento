@@ -8,10 +8,10 @@ interface BadgeProps {
 
 export function Badge({ children, variant = "navy", className = "" }: BadgeProps) {
   const variants = {
-    navy: "bg-navy/90 text-white",
-    red: "bg-red-500 text-white",
-    accent: "bg-accent text-navy",
-    white: "bg-white/90 backdrop-blur-sm text-navy",
+    navy: "bg-navy/90 text-white shadow-sm",
+    red: "bg-red-500 text-white shadow-sm",
+    accent: "bg-accent text-navy dark:bg-brand-gold dark:text-brand-forest shadow-sm",
+    white: "bg-white/90 backdrop-blur-sm text-navy dark:bg-navy/80 dark:text-brand-gold border border-brand-gold/10 shadow-sm",
   };
 
   return (

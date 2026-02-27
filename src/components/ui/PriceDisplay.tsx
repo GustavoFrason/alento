@@ -25,8 +25,8 @@ export function PriceDisplay({
   };
 
   const installments = (price / 12);
-  const textColor = invertColors ? "text-white" : "text-navy";
-  const mutedColor = invertColors ? "text-white/40" : "text-gray-400";
+  const textColor = invertColors ? "text-white" : "text-navy dark:text-brand-champagne";
+  const mutedColor = invertColors ? "text-white/40" : "text-gray-400 dark:text-white/40";
 
   return (
     <div className={`flex flex-col ${className}`}>

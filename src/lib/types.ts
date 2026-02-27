@@ -139,6 +139,10 @@ export interface ImportedProduct {
   origin: string;
   tags?: ImportedProductTag[];
   description?: string;
+  /** Condição do produto: Novo ou Seminovo de Luxo */
+  condition: "new" | "pre-owned";
+  /** Estado de conservação (para seminovos): Mint, Excellent, Good */
+  conditionDetail?: "Mint" | "Excellent" | "Good";
   /** Galeria de imagens (opcional) */
   images?: string[];
 }

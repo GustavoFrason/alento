@@ -7,6 +7,7 @@ import { useScroll } from "@/hooks/useScroll";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SearchOverlay } from "./SearchOverlay";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 import { useEffect } from "react";
 
 export function Header() {
@@ -14,7 +15,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
-  // Keyboard shortcut for search (CMD/CTRL + K)
+  // ... (existing useEffect)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -26,7 +27,6 @@ export function Header() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Consider moving these constants to a config file eventually
   const whatsappNumber = "5541996384529";
   const whatsappMessage = "Olá! Gostaria de saber mais sobre os produtos importados da ALENTO";
 
@@ -43,37 +43,40 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-navy/95 backdrop-blur-md shadow-lg shadow-black/10"
-          : "bg-navy"
+          ? "bg-white/90 dark:bg-navy/95 backdrop-blur-md shadow-lg shadow-black/5 dark:shadow-black/20"
+          : "bg-brand-champagne dark:bg-navy border-b border-brand-gold/10 dark:border-white/5"
       }`}
     >
       <Container className="flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <Link 
           href="/" 
-          className="font-playfair text-2xl md:text-3xl text-accent hover:text-accent/80 transition-colors tracking-wide"
+          className="font-playfair text-2xl md:text-3xl text-brand-forest dark:text-brand-gold hover:opacity-80 transition-all tracking-tight font-black"
         >
           ALENTO
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-6">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="text-white hover:text-accent transition-colors p-2 relative group"
-            title="S Pesquisar (Cmd+K)"
-          >
-            <FaSearch className="text-lg" />
-            <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-          </button>
+          <div className="flex items-center gap-2 border-r border-gray-200 dark:border-white/10 pr-6">
+            <ThemeSwitcher />
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="text-navy/70 dark:text-white/70 hover:text-brand-gold transition-colors p-2 relative group"
+              title="Pesquisar (Cmd+K)"
+            >
+              <FaSearch className="text-lg" />
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-brand-gold rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
+          </div>
 
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-white hover:text-accent transition-colors text-sm font-medium"
+              className="text-navy/90 dark:text-white/80 hover:text-brand-gold transition-colors text-sm font-bold uppercase tracking-wider"
             >
               {link.label}
             </Link>
@@ -83,7 +86,7 @@ export function Header() {
             target="_blank" 
             rel="noopener noreferrer" 
             variant="whatsapp"
-            className="px-5 py-2.5 text-sm rounded-xl"
+            className="px-5 py-2.5 text-sm rounded-xl shadow-lg shadow-green-500/20"
           >
             <FaWhatsapp />
             WhatsApp
@@ -92,9 +95,10 @@ export function Header() {
 
         {/* Mobile Actions */}
         <div className="flex items-center gap-2 lg:hidden">
+          <ThemeSwitcher />
           <button
             onClick={() => setSearchOpen(true)}
-            className="text-white hover:text-accent transition-colors p-3 touch-manipulation"
+            className="text-navy/70 dark:text-white/70 hover:text-brand-gold transition-colors p-3 touch-manipulation"
             aria-label="Pesquisar"
           >
             <FaSearch className="text-xl" />
@@ -102,7 +106,7 @@ export function Header() {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white hover:text-accent transition-colors p-3 touch-manipulation"
+            className="text-navy dark:text-white hover:text-brand-gold transition-colors p-3 touch-manipulation"
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
           >

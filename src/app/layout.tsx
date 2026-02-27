@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
-import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
+import { ConciergeCTA } from "@/components/common/ConciergeCTA";
+import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,11 +36,13 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className="font-inter bg-cream text-charcoal antialiased">
-        <Header />
-        {children}
-        <FloatingWhatsApp />
-      </body>
+      <ThemeProvider>
+        <body className="font-inter bg-brand-champagne text-charcoal antialiased transition-colors duration-500 dark:bg-navy dark:text-brand-champagne">
+          <Header />
+          {children}
+          <ConciergeCTA />
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

@@ -1,243 +1,169 @@
 "use client";
 import { useState } from "react";
 import { Reveal } from "@/components/common/Reveal";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
 
 export function HeroHome() {
-  const waLink = "https://wa.me/5541996384529?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20importados%20da%20Alento";
+  const [hoveredSide, setHoveredSide] = useState<"new" | "used" | null>(null);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // Smooth mouse movement for subtle parallax
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0.5);
   
-  // Antigravity Fluidity: Spring-based positions
-  const x = useMotionValue(50);
-  const y = useMotionValue(50);
-  
-  const springConfig = { stiffness: 60, damping: 30, mass: 1 };
-  const mouseX = useSpring(x, springConfig);
-  const mouseY = useSpring(y, springConfig);
-
-  const slides = [
-    { title: "Pure Satin", desc: "Base clássica com spotlight interativo." },
-    { title: "Golden Dust", desc: "Partículas douradas que flutuam no ar." },
-    { title: "Silk Parallax", desc: "Profundidade 3D nas dobras do cetim." },
-    { title: "Alento Royale", desc: "Experiência completa de luxo e brilho." },
-  ];
+  const springX = useSpring(x, { stiffness: 40, damping: 20 });
+  const springY = useSpring(y, { stiffness: 40, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const valX = ((e.clientX - rect.left) / rect.width) * 100;
-    const valY = ((e.clientY - rect.top) / rect.height) * 100;
+    const valX = (e.clientX - rect.left) / rect.width;
+    const valY = (e.clientY - rect.top) / rect.height;
     x.set(valX);
     y.set(valY);
   };
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-
-  // Transform spring values to percentage strings for CSS
-  const spotlightX = useTransform(mouseX, (v) => `${v}%`);
-  const spotlightY = useTransform(mouseY, (v) => `${v}%`);
-
-  // top-level transforms to avoid hook-rules violations
-  const parallaxX1 = useTransform(mouseX, (v) => (v - 50) * 0.15);
-  const parallaxY1 = useTransform(mouseY, (v) => (v - 50) * 0.15);
-  const parallaxX2 = useTransform(mouseX, (v) => (v - 50) * 0.08);
-  const parallaxY2 = useTransform(mouseY, (v) => (v - 50) * 0.08);
-
-  // Dust Layers (different depths)
-  const dustX1 = useTransform(mouseX, (v) => (v - 50) * 0.2);
-  const dustY1 = useTransform(mouseY, (v) => (v - 50) * 0.2);
-  const dustX2 = useTransform(mouseX, (v) => (v - 50) * 0.4);
-  const dustY2 = useTransform(mouseY, (v) => (v - 50) * 0.4);
-  const dustX3 = useTransform(mouseX, (v) => (v - 50) * 0.6);
-  const dustY3 = useTransform(mouseY, (v) => (v - 50) * 0.6);
+  const moveX = useTransform(springX, [0, 1], [-15, 15]);
+  const moveY = useTransform(springY, [0, 1], [-15, 15]);
 
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="relative isolate overflow-hidden pt-16 md:pt-20 group/hero min-h-[85vh] flex items-center"
+      className="relative min-h-[90vh] flex flex-col pt-16 md:pt-20 bg-brand-champagne dark:bg-navy transition-colors duration-500 overflow-hidden"
     >
-      {/* 1. LAYER BASE (Comum a todos) */}
-      <div 
-        className="absolute inset-0 -z-30 transition-all duration-1000"
-        style={{
-          background: "linear-gradient(135deg, #0A3D1A 0%, #2E5C3A 50%, #4A7C4A 100%)"
-        }}
-      />
-      
-      {/* 2. LAYER SILK TEXTURE (Comum) */}
-      <div className="absolute inset-0 -z-20 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/pinstripe.png')] mix-blend-overlay" />
-      <div className="absolute inset-0 -z-20 opacity-40 shadow-[inset_0_0_150px_rgba(0,0,0,0.6)]" />
-
-      {/* 3. EXPERIMENTAL LAYERS (Condicionais) */}
-      
-      {/* ATMOSPHERIC BLOOM (Antigravity Style) */}
-      <motion.div 
-        className="absolute inset-0 -z-10 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-700 pointer-events-none"
-        style={{
-          background: useTransform(
-            [spotlightX, spotlightY],
-            ([sx, sy]) => `
-              radial-gradient(120px circle at ${sx} ${sy}, rgba(255,255,255,0.18), transparent 80%),
-              radial-gradient(500px circle at ${sx} ${sy}, rgba(255,255,255,0.1), transparent 65%),
-              radial-gradient(1100px circle at ${sx} ${sy}, rgba(255,255,255,0.04), transparent 45%)
-            `
-          )
-        }}
-      />
-
-      {/* GOLDEN DUST (Slides 1 e 3) */}
-      {(currentSlide === 1 || currentSlide === 3) && (
-        <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-          {[...Array(40)].map((_, i) => {
-            const size = (i % 3) + 1; // 1px, 2px, 3px
-            const opacityValue = (i % 5) * 0.1 + 0.1; // 0.1 to 0.5
-            const delayValue = (i % 10) * 0.5;
-            const driftSpeed = 10 + (i % 10);
-            const floatSpeed = 15 + (i % 10);
-            const depth = i % 3; // Use pre-calculated depth layers
-
-            return (
-              <motion.div 
-                key={i}
-                className={`absolute rounded-full bg-brand-gold/60 blur-[1px]
-                  ${size === 3 ? 'w-1.5 h-1.5 shadow-[0_0_8px_rgba(212,175,55,0.4)]' : size === 2 ? 'w-1 h-1' : 'w-0.5 h-0.5'}
-                `}
-                style={{
-                  top: `${((i * 7.7) % 100)}%`,
-                  left: `${((i * 13.3) % 100)}%`,
-                  opacity: opacityValue,
-                  x: depth === 0 ? dustX1 : depth === 1 ? dustX2 : dustX3,
-                  y: depth === 0 ? dustY1 : depth === 1 ? dustY2 : dustY3,
-                  animation: `
-                    pulseSlow 8s ease-in-out infinite ${delayValue}s,
-                    drift ${driftSpeed}s ease-in-out infinite ${delayValue}s,
-                    float ${floatSpeed}s ease-in-out infinite ${delayValue}s
-                  `
-                }}
-              />
-            );
-          })}
-        </div>
-      )}
-
-      {/* SILK PARALLAX (Slides 2 e 3) */}
-      {(currentSlide === 2 || currentSlide === 3) && (
-        <>
-          <motion.div 
-            className="absolute inset-0 -z-15 opacity-20 pointer-events-none"
-            style={{ 
-              x: parallaxX1,
-              y: parallaxY1,
-              scale: 1.1,
-              background: "radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 70%)"
-            }}
-          />
-          <motion.div 
-            className="absolute inset-0 -z-15 opacity-10 pointer-events-none"
-            style={{ 
-              x: parallaxX2,
-              y: parallaxY2,
-              scale: 1.05,
-              background: "linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 40%)"
-            }}
-          />
-        </>
-      )}
-
-      {/* CONTENT */}
-      <Container className="py-20">
-        <div className="max-w-3xl">
-          <Reveal key={currentSlide}>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="inline-flex items-center gap-2 bg-brand-gold/20 text-brand-gold border border-brand-gold/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-                Slide {currentSlide + 1}: {slides[currentSlide].title}
-              </span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1} key={`h1-${currentSlide}`}>
-            <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
-              {currentSlide === 3 ? (
-                <span className="relative inline-block">
-                  Alento Royale
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent bg-[length:200%_100%] animate-glint bg-clip-text text-transparent" aria-hidden="true">
-                    Alento Royale
-                  </span>
-                </span>
-              ) : "Produtos importados com"}
-              {" "}
-              <span className="text-brand-gold">qualidade</span> e{" "}
-              <span className="text-brand-gold">confiança</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.2} key={`p-${currentSlide}`}>
-            <p className="text-lg sm:text-xl text-white/70 mb-10 max-w-2xl leading-relaxed">
-              {slides[currentSlide].desc} Roupas, bolsas e eletrônicos das melhores marcas entregues com garantia de originalidade.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.3}>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button href="#categories" variant="primary" className="px-8 py-4 text-base shadow-lg shadow-brand-gold/25">
-                Ver Categorias
-                <FaArrowRight className="text-sm" />
-              </Button>
-              <Button 
-                href={waLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                variant="outline" 
-                className="px-8 py-4 text-base border-white/20 text-white hover:bg-white/10"
-              >
-                Falar no WhatsApp
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </Container>
-
-      {/* NAVIGATION CONTROLS */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
-        <button 
-          onClick={prevSlide}
-          className="p-3 rounded-full border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all"
-          aria-label="Slide anterior"
+      <div className="flex-1 flex flex-col md:flex-row h-full">
+        {/* LADO ESQUERDO: PRODUTOS NOVOS */}
+        <div 
+          className={`relative flex-1 transition-all duration-700 ease-in-out group overflow-hidden cursor-pointer ${
+            hoveredSide === "new" ? "md:flex-[1.2]" : hoveredSide === "used" ? "md:flex-[0.8]" : "md:flex-1"
+          }`}
+          onMouseEnter={() => setHoveredSide("new")}
+          onMouseLeave={() => setHoveredSide(null)}
         >
-          <FaArrowLeft className="rotate-180" />
-        </button>
-        
-        <div className="flex gap-3">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                currentSlide === i ? "w-8 bg-brand-gold" : "w-2 bg-white/20"
+          {/* Imagem de Fundo - New Luxury */}
+          <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
+            <Image 
+              src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop" 
+              alt="Produtos Importados Novos"
+              fill
+              className={`object-cover mix-blend-multiply transition-opacity duration-500 ${
+                hoveredSide === "new" ? "opacity-100" : "opacity-80"
               }`}
             />
-          ))}
+            <div className={`absolute inset-0 transition-colors duration-500 ${
+              hoveredSide === "new" ? "bg-brand-forest/10" : "bg-brand-forest/40"
+            }`} />
+          </div>
+
+          <Container className="relative z-10 h-full flex flex-col justify-center py-20">
+            <motion.div style={{ x: moveX, y: moveY }}>
+              <Reveal>
+                <span className="inline-block text-brand-gold text-sm font-bold tracking-[0.3em] uppercase mb-4">
+                  New Arrival
+                </span>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="font-playfair text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[0.9]">
+                  Importados <br /> <span className="italic">Direto dos EUA</span>
+                </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <button className="group/btn flex items-center gap-4 text-white hover:text-brand-gold transition-colors">
+                  <span className="text-xl border-b border-white/30 group-hover/btn:border-brand-gold pb-1">Ver Coleção Nova</span>
+                  <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover/btn:border-brand-gold group-hover/btn:bg-brand-gold group-hover/btn:text-brand-forest transition-all">
+                    <FaArrowRight />
+                  </div>
+                </button>
+              </Reveal>
+            </motion.div>
+          </Container>
+
+          {/* Efeito de Bloom no Hover */}
+          <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-700 bg-[radial-gradient(circle_at_center,_white_0%,transparent_70%)]" />
         </div>
 
-        <button 
-          onClick={nextSlide}
-          className="p-3 rounded-full border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-all"
-          aria-label="Próximo slide"
-        >
-          <FaArrowRight />
-        </button>
+        {/* LINHA DIVISORA (EDITORIAL) */}
+        <div className="hidden md:block w-px bg-brand-forest/10 relative z-20" />
+
+          {/* LADO DIREITO: SEMINOVOS */}
+          <div 
+            className={`relative flex-1 transition-all duration-700 ease-in-out group overflow-hidden cursor-pointer ${
+              hoveredSide === "used" ? "md:flex-[1.2]" : hoveredSide === "new" ? "md:flex-[0.8]" : "md:flex-1"
+            }`}
+            onMouseEnter={() => setHoveredSide("used")}
+            onMouseLeave={() => setHoveredSide(null)}
+          >
+            {/* Imagem de Fundo - Seminovos */}
+            <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
+              <Image 
+                src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1935&auto=format&fit=crop" 
+                alt="Seminovos de Luxo"
+                fill
+              className={`object-cover mix-blend-multiply transition-opacity duration-500 ${
+                hoveredSide === "used" ? "opacity-100" : "opacity-80"
+              }`}
+            />
+            <div className={`absolute inset-0 transition-colors duration-500 ${
+              hoveredSide === "used" ? "bg-brand-sage/10" : "bg-brand-sage/40"
+            }`} />
+          </div>
+
+          <Container className="relative z-10 h-full flex flex-col justify-center py-20">
+            <motion.div style={{ x: useTransform(springX, [0, 1], [15, -15]), y: moveY }}>
+              <Reveal>
+                <span className="inline-block text-brand-gold text-sm font-bold tracking-[0.3em] uppercase mb-4">
+                  Curated Luxury
+                </span>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="font-playfair text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[0.9]">
+                  Seminovos <br /> <span className="italic">de Luxo</span>
+                </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <button className="group/btn flex items-center gap-4 text-white hover:text-brand-gold transition-colors">
+                  <span className="text-xl border-b border-white/30 group-hover/btn:border-brand-gold pb-1">Explorar Curadoria</span>
+                  <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover/btn:border-brand-gold group-hover/btn:bg-brand-gold group-hover/btn:text-brand-forest transition-all">
+                    <FaArrowRight />
+                  </div>
+                </button>
+              </Reveal>
+            </motion.div>
+          </Container>
+
+          {/* Efeito de Bloom no Hover */}
+          <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-700 bg-[radial-gradient(circle_at_center,_white_0%,transparent_70%)]" />
+        </div>
       </div>
 
-      {/* Side Label */}
-      <div className="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 vertical-text">
-        <span className="text-[10px] text-white/20 uppercase tracking-[1em] font-bold">
-          LABORATÓRIO DE EFEITOS PREMIUM
-        </span>
+      {/* RODAPÉ DO HERO (STATS) */}
+      <div className="bg-white/50 dark:bg-white/5 backdrop-blur-md border-t border-brand-forest/5 dark:border-white/10 py-8 transition-colors duration-500">
+        <Container>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center md:text-left">
+              <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">100% Original</span>
+              <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Autenticidade Garantida</span>
+            </div>
+            <div className="text-center md:text-left border-l border-brand-forest/10 dark:border-white/10 pl-8">
+              <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Seminovos</span>
+              <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Curadoria de Luxo</span>
+            </div>
+            <div className="hidden md:block border-l border-brand-forest/10 dark:border-white/10 pl-8">
+              <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Fast Delivery</span>
+              <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Direto de Orlando/EUA</span>
+            </div>
+            <div className="hidden md:block border-l border-brand-forest/10 dark:border-white/10 pl-8">
+              <span className="block text-brand-forest dark:text-brand-champagne font-playfair text-2xl mb-1">Personal Shopper</span>
+              <span className="text-brand-forest/60 dark:text-white/40 text-xs uppercase tracking-widest font-bold">Assessoria Exclusiva</span>
+            </div>
+          </div>
+        </Container>
       </div>
+
+      {/* Decorative vertical lines */}
+      <div className="absolute left-[10%] top-0 bottom-0 w-px bg-white/10 pointer-events-none z-30" />
+      <div className="absolute right-[10%] top-0 bottom-0 w-px bg-white/10 pointer-events-none z-30" />
     </section>
   );
 }
