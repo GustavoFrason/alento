@@ -9,7 +9,7 @@ export function ConciergeCTA() {
   const waLink = getWhatsAppLink("5541996384529", waMessage);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 group">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 group">
       <motion.a
         href={waLink}
         target="_blank"

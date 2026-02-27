@@ -5,6 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { Container } from "@/components/ui/Container";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export function HeroHome() {
   const [hoveredSide, setHoveredSide] = useState<"new" | "used" | null>(null);
@@ -34,7 +35,8 @@ export function HeroHome() {
     >
       <div className="flex-1 flex flex-col md:flex-row h-full">
         {/* LADO ESQUERDO: PRODUTOS NOVOS */}
-        <div 
+        <Link
+          href="#products"
           className={`relative flex-1 transition-all duration-700 ease-in-out group overflow-hidden cursor-pointer ${
             hoveredSide === "new" ? "md:flex-[1.2]" : hoveredSide === "used" ? "md:flex-[0.8]" : "md:flex-1"
           }`}
@@ -69,25 +71,26 @@ export function HeroHome() {
                 </h2>
               </Reveal>
               <Reveal delay={0.2}>
-                <button className="group/btn flex items-center gap-4 text-white hover:text-brand-gold transition-colors">
+                <div className="group/btn flex items-center gap-4 text-white hover:text-brand-gold transition-colors">
                   <span className="text-xl border-b border-white/30 group-hover/btn:border-brand-gold pb-1">Ver Coleção Nova</span>
                   <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover/btn:border-brand-gold group-hover/btn:bg-brand-gold group-hover/btn:text-brand-forest transition-all">
                     <FaArrowRight />
                   </div>
-                </button>
+                </div>
               </Reveal>
             </motion.div>
           </Container>
 
           {/* Efeito de Bloom no Hover */}
           <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-700 bg-[radial-gradient(circle_at_center,_white_0%,transparent_70%)]" />
-        </div>
+        </Link>
 
         {/* LINHA DIVISORA (EDITORIAL) */}
         <div className="hidden md:block w-px bg-brand-forest/10 relative z-20" />
 
           {/* LADO DIREITO: SEMINOVOS */}
-          <div 
+          <Link
+            href="/categoria/bolsas"
             className={`relative flex-1 transition-all duration-700 ease-in-out group overflow-hidden cursor-pointer ${
               hoveredSide === "used" ? "md:flex-[1.2]" : hoveredSide === "new" ? "md:flex-[0.8]" : "md:flex-1"
             }`}
@@ -122,19 +125,19 @@ export function HeroHome() {
                 </h2>
               </Reveal>
               <Reveal delay={0.2}>
-                <button className="group/btn flex items-center gap-4 text-white hover:text-brand-gold transition-colors">
+                <div className="group/btn flex items-center gap-4 text-white hover:text-brand-gold transition-colors">
                   <span className="text-xl border-b border-white/30 group-hover/btn:border-brand-gold pb-1">Explorar Curadoria</span>
                   <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover/btn:border-brand-gold group-hover/btn:bg-brand-gold group-hover/btn:text-brand-forest transition-all">
                     <FaArrowRight />
                   </div>
-                </button>
+                </div>
               </Reveal>
             </motion.div>
           </Container>
 
           {/* Efeito de Bloom no Hover */}
           <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-700 bg-[radial-gradient(circle_at_center,_white_0%,transparent_70%)]" />
-        </div>
+        </Link>
       </div>
 
       {/* RODAPÉ DO HERO (STATS) */}

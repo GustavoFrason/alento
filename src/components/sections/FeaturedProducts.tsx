@@ -40,13 +40,13 @@ export function FeaturedProducts() {
         />
 
         {/* Category Tabs - Editorial Serif Design */}
-        <div className="flex flex-col items-center mb-16">
-          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+        <div className="w-full flex flex-col items-center mb-10 md:mb-16 px-4">
+          <nav className="w-full flex overflow-x-auto md:flex-wrap md:justify-center gap-x-6 md:gap-x-12 gap-y-4 no-scrollbar pb-2 md:pb-0">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative py-2 text-[11px] font-serif uppercase tracking-[0.3em] transition-colors duration-500 whitespace-nowrap ${
+                className={`relative py-2 text-[10px] md:text-[11px] font-serif uppercase tracking-[0.2em] md:tracking-[0.3em] transition-colors duration-500 whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab.key
                     ? "text-navy dark:text-brand-gold font-bold"
                     : "text-gray-400 dark:text-white/20 hover:text-navy dark:hover:text-brand-gold"

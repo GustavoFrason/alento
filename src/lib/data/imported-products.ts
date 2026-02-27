@@ -5,7 +5,7 @@ export const IMPORTED_PRODUCTS: ImportedProduct[] = [
   {
     id: "IMP-01",
     title: "Jaqueta Nike Sportswear Windrunner",
-    imageSrc: "https://images.unsplash.com/photo-1511746015382-54acbb649d59?q=80&w=2070&auto=format&fit=crop",
+    imageSrc: "https://images.unsplash.com/photo-1558559765-80c36a21c297?q=80&w=2000&auto=format&fit=crop",
     price: 489,
     compareAtPrice: 649,
     category: "roupas",
@@ -124,7 +124,7 @@ export const IMPORTED_PRODUCTS: ImportedProduct[] = [
   {
     id: "IMP-10",
     title: "AirPods Pro 2ª Geração",
-    imageSrc: "https://images.unsplash.com/photo-1588423770574-91023ad665b1?q=80&w=2155&auto=format&fit=crop",
+    imageSrc: "https://images.unsplash.com/photo-1588156979435-379b9d365296?q=80&w=2000&auto=format&fit=crop",
     price: 1499,
     compareAtPrice: 1899,
     category: "eletronicos",
